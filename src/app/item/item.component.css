@@ -1,0 +1,13 @@
+.title {
+    font-weight: bold;
+    color: darkgray;
+}
+
+.name {
+    color: black;
+}
+
+.comment {
+    border: solid lightslategrey 1px;
+    background-color: lightsteelblue;
+}
