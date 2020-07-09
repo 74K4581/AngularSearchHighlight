@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ItemData } from '../model/itemData'
 
 @Component({
@@ -8,11 +8,14 @@ import { ItemData } from '../model/itemData'
 })
 export class ListComponent implements OnInit {
 
+  private el: HTMLElement;
   keyword:string = "";
   itemDatas:ItemData[] = [];
   index:number = -1;
 
-  constructor() { }
+  constructor(el: ElementRef) {
+    this.el = el.nativeElement;
+  }
 
   ngOnInit(): void {
     let d = new Date();
@@ -38,7 +41,8 @@ export class ListComponent implements OnInit {
 
   focusNext(inc:number) {
     
-    let hits = document.getElementsByClassName("highlight");
+    let hits = this.el.querySelectorAll('.highlight');
+    //let hits = document.getElementsByClassName("highlight");
 
     if (this.index < 0) {
       this.index += hits.length;
