@@ -1,6 +1,14 @@
-<div>
-<span class="title">Name:</span>
-<span class="name">{{itemData.name}}</span>
-<div class="comment" [innerHTML]="itemData.comment | highlight"></div>
+<div class="item">
+    <p>
+        <span class="title">Name:</span>
+        <span class="name" [innerHTML]="itemData.name | highlight : keyword"></span>
+    </p>
+    <p>
+        <span class="title">Date:</span>
+        <span class="date" [innerHTML]="itemData.dateTime | date | highlight : keyword"></span>
+    </p>
+    <div class="comment">
+        <span class="title">Comment:</span>
+        <div  [innerHTML]="itemData.comment | highlight : keyword"></div>
+    </div>
 </div>
-<hr />
