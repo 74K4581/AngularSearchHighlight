@@ -2,3 +2,12 @@
 body {
     font-size:10px;
 }
+
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+.highlight2 {
+    background-color: orange;
+}

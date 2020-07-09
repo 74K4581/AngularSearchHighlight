@@ -8,6 +8,17 @@
 }
 
 .comment {
-    border: solid lightslategrey 1px;
-    background-color: lightsteelblue;
+    /*border: solid lightslategrey 1px;
+    background-color: lightsteelblue;*/
+    margin: 0.25rem;
+    padding: 0.25rem;
+    box-shadow: 2px 2px 4px 0px grey;
+}
+
+.item {
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.25rem;
+    box-shadow: 2px 2px 4px 0px grey;
+    width : 20%;
 }

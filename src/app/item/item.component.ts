@@ -9,6 +9,7 @@ import { ItemData } from '../model/itemData';
 export class ItemComponent implements OnInit {
 
   @Input() itemData: ItemData;
+  @Input() keyword:string;
 
   constructor() { 
   }
