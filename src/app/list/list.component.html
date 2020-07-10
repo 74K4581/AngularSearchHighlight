@@ -1,6 +1,6 @@
 <div class="screen">
   <div id="search-bar" class="bar">
-    <input id="search" type="search" placeholder="検索キーワードを入力してください。"  [(ngModel)]="keyword" (input)="changeKeyword()" (keyup.enter)="focusNext(1)" />
+    <input id="search" type="search" placeholder="検索キーワードを入力してください。"  [(ngModel)]="keyword" (input)="changeKeyword()" (keyup)="keyUpEnter($event)" />
     <input type="button" value="<" (click)="focusNext(-1)"/>
     <input type="button" value=">" (click)="focusNext(+1)"/>
   </div>

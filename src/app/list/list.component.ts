@@ -37,8 +37,18 @@ export class ListComponent implements OnInit {
   changeKeyword() {
     this.index = -1;
   }
+  
+  keyUpEnter(e:any) {
+    if (e.keyCode === 13) {
+      this.focusNext(e.shiftKey === true ? -1 : +1);
+    }
+  }
 
   focusNext(inc:number) {
+    if (!this.keyword || this.keyword === "") {
+      return;
+    }
+
     let hits = this.el.querySelectorAll('.highlight');
     let scrollArea = this.el.querySelectorAll('.scroll')[0];
 
