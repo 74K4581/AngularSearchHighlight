@@ -38,11 +38,9 @@ export class ListComponent implements OnInit {
     this.index = -1;
   }
 
-
   focusNext(inc:number) {
-    
     let hits = this.el.querySelectorAll('.highlight');
-    //let hits = document.getElementsByClassName("highlight");
+    let scrollArea = this.el.querySelectorAll('.scroll')[0];
 
     if (this.index < 0) {
       this.index += hits.length;
@@ -57,8 +55,15 @@ export class ListComponent implements OnInit {
     // 次のフォーカスを設定
     let next = this.index % hits.length;
     let hit = hits[next];
-    hit.scrollIntoView(inc < 0 );
+    if (!this.isShowInScreen(scrollArea, hit)) {
+      hit.scrollIntoView(inc < 0);
+    }
     hit.classList.add("highlight2");
   }
 
+  isShowInScreen(parentElem:Element, elem:Element) {
+    const parentRect = parentElem.getBoundingClientRect();
+    const rect = elem.getBoundingClientRect();
+    return parentRect.top < rect.top && rect.bottom < parentRect.top + parentRect.height;
+  }
 }
