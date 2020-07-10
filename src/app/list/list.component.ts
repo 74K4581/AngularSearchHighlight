@@ -44,34 +44,47 @@ export class ListComponent implements OnInit {
     }
   }
 
+  // フォーカスする位置を変更する「
+  // inc : 次に進めるなら+1、前に戻るなら-1
   focusNext(inc:number) {
     if (!this.keyword || this.keyword === "") {
       return;
     }
+    
+    // 先頭から前には戻らない
+    if (this.index <= 0 && inc < 0) return;
 
+    // フォーカスすべき要素を取得
     let hits = this.el.querySelectorAll('.highlight');
-    let scrollArea = this.el.querySelectorAll('.scroll')[0];
 
-    if (this.index < 0) {
-      this.index += hits.length;
-    }
+    // 最後から次には進まない
+    if (this.index === hits.length - 1 && inc > 0) return;
 
     // 前のフォーカスの色を戻す
-    let prev = this.index % hits.length;
-    hits[prev].classList.remove("highlight2");
+    if (0 <= this.index) {
+      let prev = this.index % hits.length;
+      hits[prev].classList.remove("highlight2");
+    }
 
+    // フォーカス位置を進める
     this.index += inc;
-
-    // 次のフォーカスを設定
     let next = this.index % hits.length;
     let hit = hits[next];
-    if (!this.isShowInScreen(scrollArea, hit)) {
+
+    // フォーカス位置が画面外ならスクロール
+    let scrollArea = this.el.querySelectorAll('.scroll')[0];
+    if (!this.isInScreen(scrollArea, hit)) {
       hit.scrollIntoView(inc < 0);
     }
+
+    // フォーカス位置の色を変える
     hit.classList.add("highlight2");
   }
 
-  isShowInScreen(parentElem:Element, elem:Element) {
+  // 指定要素が画面内かどうか判定する
+  // parentElem : スクリーン領域
+  // elem : 判定する要素
+  isInScreen(parentElem:Element, elem:Element) {
     const parentRect = parentElem.getBoundingClientRect();
     const rect = elem.getBoundingClientRect();
     return parentRect.top < rect.top && rect.bottom < parentRect.top + parentRect.height;
