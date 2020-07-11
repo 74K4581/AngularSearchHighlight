@@ -20,10 +20,10 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     let d = new Date();
     for (let i = 0; i < 3 ; ++i) {
-      this.itemDatas.push(new ItemData("User-A", d, "Comment "));
+      this.itemDatas.push(new ItemData("User-A", d, "Comment&nbsp;test"));
       this.itemDatas.push(new ItemData("User-B", d, "Comment<strong>strong</strong><br />Comment<strong>strong</strong>"));
       this.itemDatas.push(new ItemData("User-B", d, "Comment<mark>mark</mark><br />Comment<mark>mark</mark>"));
-      this.itemDatas.push(new ItemData("User-B", d, "<a href=`https://www.google.co.jp/'>Link to google jp</a>"));
+      this.itemDatas.push(new ItemData("User-B", d, "<a href='https://www.google.co.jp/'>Link to google.jp</a>"));
     }
 
     for (let i = 0; i < 30 ; ++i) {
