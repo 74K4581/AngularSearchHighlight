@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ItemData } from '../model/itemData'
 
 @Component({
@@ -8,13 +8,13 @@ import { ItemData } from '../model/itemData'
 })
 export class ListComponent implements OnInit {
 
-  private el: HTMLElement;
+  @ViewChild("topElem") public elm: ElementRef;
+
   keyword:string = "";
   itemDatas:ItemData[] = [];
   index:number = -1;
 
-  constructor(el: ElementRef) {
-    this.el = el.nativeElement;
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -55,7 +55,7 @@ export class ListComponent implements OnInit {
     if (this.index <= 0 && inc < 0) return;
 
     // フォーカスすべき要素を取得
-    let hits = this.el.querySelectorAll('.highlight');
+    let hits = this.elm.nativeElement.querySelectorAll('.highlight');
 
     // 最後から次には進まない
     if (this.index === hits.length - 1 && inc > 0) return;
@@ -72,7 +72,7 @@ export class ListComponent implements OnInit {
     let hit = hits[next];
 
     // フォーカス位置が画面外ならスクロール
-    let scrollArea = this.el.querySelectorAll('.scroll')[0];
+    let scrollArea = this.elm.nativeElement.querySelectorAll('.scroll')[0];
     if (!this.isInScreen(scrollArea, hit)) {
       hit.scrollIntoView(inc < 0);
     }
