@@ -1,18 +1,19 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { ItemData } from '../model/itemData'
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewChecked {
 
   @ViewChild("topElem") public elm: ElementRef;
 
   keyword:string = "";
   itemDatas:ItemData[] = [];
   index:number = -1;
+  resultCount:number = -1;
 
   constructor() {
   }
@@ -36,8 +37,17 @@ export class ListComponent implements OnInit {
 
   changeKeyword() {
     this.index = -1;
+    this.resultCount = -1;
+    
   }
   
+  public ngAfterViewChecked(): void { 
+    if (this.keyword !== "") {
+      let hits = this.elm.nativeElement.querySelectorAll('.highlight');
+      this.resultCount = hits.length;
+    }
+   }  
+
   keyUpEnter(e:any) {
     if (e.keyCode === 13) {
       this.focusNext(e.shiftKey === true ? -1 : +1);
@@ -51,12 +61,11 @@ export class ListComponent implements OnInit {
       return;
     }
     
-    // 先頭から前には戻らない
-    if (this.index <= 0 && inc < 0) return;
-
     // フォーカスすべき要素を取得
     let hits = this.elm.nativeElement.querySelectorAll('.highlight');
-
+    
+    // 先頭から前には戻らない
+    if (this.index <= 0 && inc < 0) return;
     // 最後から次には進まない
     if (this.index === hits.length - 1 && inc > 0) return;
 

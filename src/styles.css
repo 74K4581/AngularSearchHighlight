@@ -6,9 +6,13 @@ body {
 .highlight {
     background-color: yellow;
     font-weight: bold;
+    border-radius: 2.5px;
 }
 
 
 .highlight2 {
+    transition: all 30ms 0s ease;
+    box-shadow: 0.25px 0.25px 2px 0px rgb(155, 149, 140);
     background-color: orange;
+    border-radius: 2.5px;
 }
