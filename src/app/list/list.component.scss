@@ -1,0 +1,29 @@
+.bar {
+    display: flex;
+}
+
+.search {
+    flex-grow: 1;
+
+}
+
+.screen {
+    height: 100%;
+    width: 100%;
+}
+
+
+.scroll {
+    height: 300px;
+    width: 100%;
+    overflow: scroll;
+}
+
+.resultCount {
+    position: relative;
+    float: right;
+    left: -68px;
+    top: -18px;
+    color: gray;
+    margin-bottom: -18px;
+}
