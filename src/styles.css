@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    font-size:10px;
+    font-size:15px;
 }
 
 .highlight {
     background-color: yellow;
     font-weight: bold;
     border-radius: 2.5px;
+    z-index: 5;
 }
 
 
@@ -15,4 +16,5 @@ body {
     box-shadow: 0.25px 0.25px 2px 0px rgb(155, 149, 140);
     background-color: orange;
     border-radius: 2.5px;
+    z-index: 10;
 }
