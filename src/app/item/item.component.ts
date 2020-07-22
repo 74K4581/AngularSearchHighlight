@@ -2,19 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ItemData } from '../model/itemData';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
 
-  @Input() itemData: ItemData;
-  @Input() keyword:string;
+    @Input() itemData: ItemData;
+    @Input() keyword: string;
 
-  constructor() { 
-  }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }
