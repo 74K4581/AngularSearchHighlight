@@ -6,7 +6,7 @@ import { ItemData } from '../model/itemData'
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit, AfterViewChecked {
+export class ListComponent implements OnInit {
 
     @ViewChild("topElem") public elm: ElementRef;
 
@@ -15,12 +15,14 @@ export class ListComponent implements OnInit, AfterViewChecked {
     index: number = -1;
     resultCount: number = -1;
 
+    hits = null;
+
     constructor() {
     }
 
     ngOnInit(): void {
         let d = new Date();
-        for (let i = 0; i < 3; ++i) {
+        for (let i = 0; i < 30; ++i) {
             this.itemDatas.push(new ItemData("User-A", d, "Comment&nbsp;test"));
             this.itemDatas.push(new ItemData("User-B", d, "Comment<strong>strong</strong><br />Comment<strong>strong</strong>"));
             this.itemDatas.push(new ItemData("User-B", d, "Comment<mark>mark</mark><br />Comment<mark>mark</mark>"));
@@ -38,13 +40,11 @@ export class ListComponent implements OnInit, AfterViewChecked {
     changeKeyword() {
         this.index = -1;
         this.resultCount = -1;
-
-    }
-
-    public ngAfterViewChecked(): void {
         if (this.keyword !== "") {
-            let hits = this.elm.nativeElement.querySelectorAll('.highlight');
-            this.resultCount = hits.length;
+            setTimeout(() => {
+                this.hits = this.elm.nativeElement.querySelectorAll('span.highlight');
+                this.resultCount = this.hits.length;
+            }, 0);
         }
     }
 
