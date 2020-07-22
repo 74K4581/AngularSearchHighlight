@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
 import { ListComponent } from './list/list.component';
 import { HighlightPipe } from './highlight.pipe';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
     declarations: [
@@ -13,6 +14,7 @@ import { HighlightPipe } from './highlight.pipe';
         ItemComponent,
         ListComponent,
         HighlightPipe,
+        SearchComponent,
     ],
     imports: [
         BrowserModule,

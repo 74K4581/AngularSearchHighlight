@@ -1,14 +1,7 @@
 <div #topElem class="screen">
-    <div class="bar">
-        <input class="search" type="search" placeholder="検索キーワードを入力してください。" [(ngModel)]="keyword"
-            (input)="changeKeyword()" (keyup)="keyUpEnter($event)" />
-        <input class="moveButton" type="button" value="<" (click)="focusNext(-1)" />
-        <input class="moveButton" type="button" value=">" (click)="focusNext(+1)" />
-    </div>
-    <div class="resultCount" *ngIf="resultCount >= 0">{{resultCount}}件</div>
+    <app-search (onSearch)="onSearch($event)" [searchTarget]=scroll></app-search>
 
-
-    <div class="scroll">
+    <div #scroll class="scroll">
         <app-item *ngFor="let itemData of itemDatas" class="item" [itemData]="itemData" [keyword]="keyword">
         </app-item>
     </div>
